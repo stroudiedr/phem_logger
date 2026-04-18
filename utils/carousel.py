@@ -1,5 +1,7 @@
-import os
+from pathlib import Path
 import streamlit as st
+
+ROOT = Path(__file__).parent.parent
 
 
 def screenshot_carousel(screenshots: list[tuple[str, str]], key: str) -> None:
@@ -11,7 +13,7 @@ def screenshot_carousel(screenshots: list[tuple[str, str]], key: str) -> None:
         screenshots: list of (file_path, caption) pairs
         key: unique key prefix for session state (use a different key per page)
     """
-    available = [(p, c) for p, c in screenshots if os.path.exists(p)]
+    available = [(p, c) for p, c in screenshots if (ROOT / p).exists()]
 
     if not available:
         st.info("Screenshots coming soon")
@@ -24,7 +26,6 @@ def screenshot_carousel(screenshots: list[tuple[str, str]], key: str) -> None:
     n = len(available)
     idx = st.session_state[idx_key]
 
-    # Navigation row: prev | counter | next
     col_prev, col_counter, col_next = st.columns([1, 6, 1])
     with col_prev:
         if st.button("◀", key=f"{key}_prev", disabled=(n <= 1)):
@@ -38,7 +39,6 @@ def screenshot_carousel(screenshots: list[tuple[str, str]], key: str) -> None:
             st.rerun()
 
     path, caption = available[st.session_state[idx_key]]
-    # Centre the image without stretching it to full width
     _, img_col, _ = st.columns([1, 4, 1])
     with img_col:
-        st.image(path, caption=caption)
+        st.image(str(ROOT / path), caption=caption)
