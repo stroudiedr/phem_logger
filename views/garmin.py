@@ -117,13 +117,85 @@ def render():
             unsafe_allow_html=True,
         )
 
+    with tabs[1]:
+        st.header("Garmin Forerunner")
+        st.subheader("Forerunner 255 Series")
+
+        col_carousel, col_spacer = st.columns(2)
+        with col_carousel:
+            screenshot_carousel(SCREENSHOTS, key="garmin_forerunner")
+
+        st.header("Installation")
+        col_pc, col_mac = st.columns(2)
+
+        with col_pc:
+            st.subheader("Installation with PC / Laptop")
+            st.markdown(
+                """
+1. Use Garmin cable to usb port
+2. Using Explorer navigate to File: Fenix / Garmin / Apps
+3. Drag & drop or copy & paste phem_logger_v1-3.prg file to this location
+4. Disconnect via eject if possible
+5. PHEM Logger found in Apps
+"""
+            )
+
+        with col_mac:
+            st.subheader("Installation with Apple MacBook")
+            st.markdown(
+                """
+1. In internet browser navigate to: https://openmtp.ganeshrvel.com/
+2. Click on most appropriate download button depending on age of Apple Mac
+3. Double click on downloaded .dmg file & drag to install
+4. Use Garmin cable to connect watch to usb port
+5. Open & use OpenMTP app to drag phem_logger_v1-3.prg file to folder Garmin/Apps on Watch
+6. Close OpenMTP & disconnect watch
+7. PHEM Logger will install & then found in Apps
+"""
+            )
+
+        st.header("Using PHEM Logger")
+        st.markdown("**Controls**")
+        st.markdown(
+            """
+- **UP / DOWN** – selection through options
+- **START** – enter menus, confirm timings
+- **BACK** – return to previous screen, Setting options on main screen
+- **BACK then START** – Button lock
+"""
+        )
+
+        st.header("Download")
+        st.subheader("Forerunner 255")
+        st.write("Compatible with Forerunner 255, 255S, 255 Music, 255S Music")
+        st.metric("Downloads", counts.get("PHEM_Logger_v1-4_Forerunner255.prg", "—"))
+        url_fr255 = get_latest_release_url("PHEM_Logger_v1-4_Forerunner255.prg")
+        if url_fr255:
+            st.link_button("Download .prg", url_fr255)
+        else:
+            st.info("Download coming soon")
+
+        st.divider()
+        st.header("Version history")
+        st.markdown(
+            """
+<table>
+<thead><tr><th>Version</th><th>Date</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>v1.4</td><td>18th April 2026</td><td>Amalgamated Landing &amp; At Scene to form Land / At Scene.<br>Midazolam drug added. TOR added to Cardiac Arrest menu.</td></tr>
+<tr><td>v1.3</td><td>13th April 2026</td><td>Initial release. Core timestamping, event log, job summary.</td></tr>
+</tbody>
+</table>
+""",
+            unsafe_allow_html=True,
+        )
+
     coming_soon = [
-        ("Forerunner", "Forerunner"),
         ("Enduro", "Enduro"),
         ("Venu", "Venu"),
         ("Instinct", "Instinct"),
     ]
-    for tab, (label, device) in zip(tabs[1:], coming_soon):
+    for tab, (label, device) in zip(tabs[2:], coming_soon):
         with tab:
             st.info(
                 f"Support for {label} is in development. Check back soon, or email "
