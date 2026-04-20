@@ -90,15 +90,34 @@ def render():
                 st.info("Download coming soon")
 
         with dl2:
-            st.subheader("Fenix 7 & 8 series")
-            st.write(
-                "Compatible with Fenix 7, 7S, 7X, 7 Pro, 7S Pro, 7X Pro; "
-                "Fenix 8 43mm, 8 47mm, 8 51mm, Fenix E"
-            )
+            st.subheader("Fenix 7 series")
+            st.write("Compatible with Fenix 7, 7S, 7X, 7 Pro, 7S Pro, 7X Pro")
             st.metric("Downloads", counts.get("PHEM_Logger_v1-4_Fenix7.prg", "—"))
             url7 = get_latest_release_url("PHEM_Logger_v1-4_Fenix7.prg")
             if url7:
                 st.link_button("Download .prg", url7)
+            else:
+                st.info("Download coming soon")
+
+        dl3, dl4 = st.columns(2)
+
+        with dl3:
+            st.subheader("Fenix 8 — 43mm")
+            st.write("Compatible with Fenix 8 43mm")
+            st.metric("Downloads", counts.get("PHEM_Logger_v1-4_Fenix8_43mm.prg", "—"))
+            url8_43 = get_latest_release_url("PHEM_Logger_v1-4_Fenix8_43mm.prg")
+            if url8_43:
+                st.link_button("Download .prg", url8_43)
+            else:
+                st.info("Download coming soon")
+
+        with dl4:
+            st.subheader("Fenix 8 — 47mm")
+            st.write("Compatible with Fenix 8 47mm, 8 51mm, Fenix E")
+            st.metric("Downloads", counts.get("PHEM_Logger_v1-4_Fenix8_47mm.prg", "—"))
+            url8_47 = get_latest_release_url("PHEM_Logger_v1-4_Fenix8_47mm.prg")
+            if url8_47:
+                st.link_button("Download .prg", url8_47)
             else:
                 st.info("Download coming soon")
 
