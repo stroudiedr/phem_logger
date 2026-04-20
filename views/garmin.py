@@ -128,6 +128,7 @@ def render():
 <table>
 <thead><tr><th>Version</th><th>Date</th><th>Notes</th></tr></thead>
 <tbody>
+<tr><td>v1.4</td><td>20th April 2026</td><td>Separate release for Fenix 8 watch series (43mm & 47mm).</td></tr>
 <tr><td>v1.4</td><td>17th April 2026</td><td>Amalgamated Landing &amp; At Scene to form Land / At Scene.<br>Support for Fenix 6.<br>Midazolam drug added.TOR added to Cardiac Arrest menu.</td></tr>
 <tr><td>v1.3</td><td>13th April 2026</td><td>Initial release. Core timestamping, event log, job summary. Fenix 7.</td></tr>
 </tbody>
